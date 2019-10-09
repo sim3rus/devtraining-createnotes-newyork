@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_fix">
+    <sys_script_fix action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <before>false</before>
+        <description/>
+        <flush_cache>false</flush_cache>
+        <name>notes</name>
+        <record_for_rollback>false</record_for_rollback>
+        <run_once>true</run_once>
+        <script><![CDATA[var noteGR = new GlideRecord('x_snc_createnotes_note');
+	//  Sort the records by descending order based on the sys_created_on date field value
+	//noteGR.addQuery('user', gs.getUser().getID());
+	noteGR.orderByDesc('sys_created_on');
+	noteGR.query();
+	//  For each of the Note records returned
+	while (noteGR.next()) {
+		// Create an empty object, noteObj
+		var noteObj = {};
+		gs.info('mal1 number ' + noteGR.getValue('number'));
+		// Get the display values for the number, title, and sys_id fields and put those values into the noteObj object
+		//$sp.getRecordDisplayValues(noteObj, noteGR, 'number,title,sys_id');
+		// Get the first 20 characters of the description field and add that value to the noteObj object
+		//noteObj.note = noteGR.getValue('note').slice(0,20);
+		// Push the noteObj into the notes array
+		//data.notes.push(noteObj);
+	}]]></script>
+        <sys_class_name>sys_script_fix</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-10-09 14:02:12</sys_created_on>
+        <sys_id>5dccf9cb4fd44410ad4e22788310c724</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>notes</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>sys_script_fix_5dccf9cb4fd44410ad4e22788310c724</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-10-09 14:02:12</sys_updated_on>
+        <unloadable>false</unloadable>
+    </sys_script_fix>
+</record_update>
